@@ -15,9 +15,9 @@ chrome.storage.local.get(function (items) {
         var newOrderList = Array();
 
         for (var i = 0; i < orderIdDivList.length; i++) {
-            // if (orderIdDivList[i].value == latestId) {
-            //     break;
-            // }
+            if (orderIdDivList[i].value == latestId) {
+                break;
+            }
             newOrderList.push({ 'id': orderIdDivList[i].value, 'order_time': orderTimeDivList[i].innerText ,'url': orderUrlDivList[i].href })
         }
         chrome.runtime.sendMessage({ 'brand_id': brand_id, 'newOrderList': newOrderList }, function (response) {
@@ -37,8 +37,8 @@ chrome.storage.local.get(function (items) {
 })
 
 
-// setInterval(refreshWindows, 1000);
+setInterval(refreshWindows, 1000);
 
-// function refreshWindows() {
-//     window.location.reload();
-// }
+function refreshWindows() {
+    window.location.reload();
+}
