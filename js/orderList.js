@@ -18,11 +18,14 @@ chrome.storage.local.get(function (items) {
             if (orderIdDivList[i].value == latestId) {
                 break;
             }
-            newOrderList.push({ 'id': orderIdDivList[i].value, 'order_time': orderTimeDivList[i].innerText ,'url': orderUrlDivList[i].href })
+            newOrderList.push({ 'id': orderIdDivList[i].value, 'order_time': orderTimeDivList[i].innerText, 'url': orderUrlDivList[i].href })
         }
-        chrome.runtime.sendMessage({ 'brand_id': brand_id, 'newOrderList': newOrderList }, function (response) {
 
-        });
+        if (newOrderList.length > 0) {
+            chrome.runtime.sendMessage({ 'brand_id': brand_id, 'newOrderList': newOrderList }, function (response) {
+
+            });
+        }
 
     }
 
